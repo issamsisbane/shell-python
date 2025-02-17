@@ -2,6 +2,8 @@ import sys
 
 
 def main():
+    
+    builtins = ["exit", "echo", "type"]
 
     while(True):
         sys.stdout.write("$ ")
@@ -17,6 +19,12 @@ def main():
                 sys.exit(0)
             case "echo":
                 print(" ".join(command_parts[1:]))
+            case "type":
+                if len(command_parts) > 1:
+                    if(command_parts[1] in builtins):
+                        print(f"{command_parts[1]} is a shell builtin")
+                    else:
+                        print(f"{command_parts[1]}: command not found")
             case _:
                 print(f"{command}: command not found")
 
