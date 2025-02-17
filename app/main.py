@@ -24,7 +24,7 @@ def main():
                     if(command_parts[1] in builtins):
                         print(f"{command_parts[1]} is a shell builtin")
                     else:
-                        print(f"{command_parts[1]}: command not found")
+                        print(f"{command_parts[1]}: not found")
             case _:
                 print(f"{command}: command not found")
 
