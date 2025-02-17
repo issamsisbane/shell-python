@@ -12,7 +12,7 @@ def main():
 
         if (command_parts[0] == "exit"):
             if len(command_parts) > 1:
-                sys.exit(command_parts[1])
+                sys.exit(int(command_parts[1]))
 
         print(f"{command}: command not found")
 
