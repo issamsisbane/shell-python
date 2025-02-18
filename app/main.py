@@ -1,5 +1,6 @@
 import sys
 import shutil 
+import subprocess
 
 def exit(command_parts):
     if len(command_parts) > 1:
@@ -22,12 +23,6 @@ def type(command_parts):
             else:
                 print(f"{command_parts[1]}: not found")
 
-def search_command_in_path(command_to_find):
-    for folder_to_search in folders_to_search:
-        if command_to_find in os.listdir(folder_to_search):
-            return f"{folder_to_search}/{command_to_find}"
-    return None
-
 def main():
     
     while(True):
@@ -45,7 +40,11 @@ def main():
             case "type":
                 type(command_parts)
             case _:
-                print(f"{command}: command not found")
+                # If the command exist in PATH
+                if shutil.which(command_parts[0]):
+                    subprocess.run(command_parts)
+                else:
+                    print(f"{command}: command not found")
 
 if __name__ == "__main__":
     main()
