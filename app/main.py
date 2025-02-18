@@ -1,6 +1,7 @@
 import sys
 import shutil 
 import subprocess
+import os
 
 def exit(command_parts):
     if len(command_parts) > 1:
@@ -12,7 +13,7 @@ def echo(command_parts):
 
 def type(command_parts):
 
-    BUILTINS = ["exit", "echo", "type"]
+    BUILTINS = ["exit", "echo", "type", "pwd"]
     
     if len(command_parts) > 1:    
         if(command_parts[1] in BUILTINS):
@@ -22,6 +23,9 @@ def type(command_parts):
                     print(f"{command_parts[1]} is {found_command_in_path}")
             else:
                 print(f"{command_parts[1]}: not found")
+
+def pwd(command_parts):
+    print(os.getcwd())
 
 def main():
     
@@ -39,6 +43,8 @@ def main():
                 echo(command_parts)
             case "type":
                 type(command_parts)
+            case "pwd":
+                pwd(command_parts)
             case _:
                 # If the command exist in PATH
                 if shutil.which(command_parts[0]):
