@@ -32,7 +32,7 @@ def cd(command_parts):
     if os.path.exists(path):
         os.chdir(command_parts[1])
     else :
-        print(f"{command_parts[0]}: <{path}>: No such file or directory")
+        print(f"{command_parts[0]}: {path}: No such file or directory")
 
 def main():
     
