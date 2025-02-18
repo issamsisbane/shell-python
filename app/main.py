@@ -28,11 +28,24 @@ def pwd(command_parts):
     print(os.getcwd())
 
 def cd(command_parts):
-    path = command_parts[1]
-    if os.path.exists(path):
-        os.chdir(command_parts[1])
-    else :
-        print(f"{command_parts[0]}: {path}: No such file or directory")
+    if len(command_parts) < 2:
+        print("cd: missing operand")
+        return
+    
+    complete_path = command_parts[1]
+    
+    if complete_path == ".":
+        return 
+
+    elif complete_path == "..":
+        os.chdir(os.path.dirname(os.getcwd()))
+
+    else:
+        new_path = os.path.abspath(os.path.join(os.getcwd(), complete_path))
+        if os.path.exists(new_path) and os.path.isdir(new_path):  
+            os.chdir(new_path)
+        else:
+            print(f"cd: {complete_path}: No such file or directory")
 
 def main():
     
