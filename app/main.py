@@ -27,6 +27,13 @@ def type(command_parts):
 def pwd(command_parts):
     print(os.getcwd())
 
+def cd(command_parts):
+    path = command_parts[1]
+    if os.path.exists(path):
+        os.chdir(command_parts[1])
+    else :
+        print(f"{command_parts[0]}: <{path}>: No such file or directory")
+
 def main():
     
     while(True):
@@ -45,6 +52,8 @@ def main():
                 type(command_parts)
             case "pwd":
                 pwd(command_parts)
+            case "cd":
+                cd(command_parts)
             case _:
                 # If the command exist in PATH
                 if shutil.which(command_parts[0]):
