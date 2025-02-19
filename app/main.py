@@ -8,8 +8,8 @@ def exit(command_parts):
         sys.exit(int(command_parts[1]))
     sys.exit(0)
 
-def echo(command_parts):
-    print(" ".join(command_parts[1:]))
+def echo(command_parts): 
+    print(" ".join(command_parts[1:]).replace("'", ""))
 
 def type(command_parts):
 
@@ -43,6 +43,29 @@ def cd(command_parts):
         os.chdir(new_path)
     else:
         print(f"cd: {complete_path}: No such file or directory") 
+
+import os
+
+def cat(command_parts):
+    if len(command_parts) < 2:
+        print("cat: missing operand")
+        return
+
+    filename = " ".join(command_parts[1:])   
+
+    if not os.path.exists(filename):
+        print(f"cat: {filename}: No such file or directory")
+        return
+
+    if not os.path.isfile(filename):
+        print(f"cat: {filename}: Is a directory")
+        return
+
+    try:
+        with open(filename, "r", encoding="utf-8") as file:
+            print(file.read(), end="")  
+    except Exception as e:
+        print(f"cat: {filename}: {e}")
 
 def main():
     
