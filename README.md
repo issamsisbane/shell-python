@@ -1,5 +1,3 @@
-[![progress-banner](https://backend.codecrafters.io/progress/shell/eedca8e5-7c0b-4450-b40f-eb5aeb4a3c3d)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
-
 # SHELL PYTHON
 
 This project is a SHELL written in PYTHON.
